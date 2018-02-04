@@ -23,13 +23,12 @@ public abstract class Unit_Card : Card {
     /// </summary>
     [SerializeField]
     protected int _FoodCost;
+    #endregion
 
     #region Access Variables
     public int Attack { get { return _Attack; } }
     public int MaxHP { get { return _MaxHP; } }
     public int FoodCost { get { return _FoodCost; } }
-    #endregion
-
     #endregion
 
 

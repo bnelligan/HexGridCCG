@@ -38,6 +38,11 @@ public class Hand : MonoBehaviour {
     // Draws a hand of size InitSize
     public void DrawStartingHand()
     {
+        if(InitSize > MaxSize)
+        {
+            Debug.LogWarning("Init hand size too large. Drawing to max hand size.");
+            InitSize = MaxSize;
+        }
         m_pHand = deck.DrawCards(InitSize);
         foreach(Card c in m_pHand)
         {
