@@ -4,18 +4,8 @@ using UnityEngine;
 
 public class BoardBuilder : MonoBehaviour {
 
-    #region Public Variables
-
-    // Collection of HexTiles representing the board
-
-   
-    #endregion
-
-    #region Private Variables
-
     [SerializeField]
     HexTile objTile;
-
 
     // Amount to adjust spawn location by
     float dz = 6.5f;
@@ -26,17 +16,7 @@ public class BoardBuilder : MonoBehaviour {
     /// </summary>
     [SerializeField]
     int hexRadius;
-
-    #endregion
-
-    #region Unity Methods
-
     
-
-    #endregion
-
-    #region Public Methods
-
     public List<HexTile> BuildHexagonalBoard()
     {
         // Ensure there is a HexTile
@@ -139,12 +119,4 @@ public class BoardBuilder : MonoBehaviour {
         tTile.CubicCoords = SpawnCoord;
         return tTile;
     }
-
-    #endregion
-
-    #region Private Methods
-
-  
-
-    #endregion
 }

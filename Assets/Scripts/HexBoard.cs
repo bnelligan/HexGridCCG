@@ -35,7 +35,7 @@ public class HexBoard : MonoBehaviour {
             if (t.GetID() == TileID)
             {
                 Debug.Log("Highlighting tile with ID " + t.GetID());
-                t.Highlight();
+                t.ToggleHighlight();
             }
         }
     }
