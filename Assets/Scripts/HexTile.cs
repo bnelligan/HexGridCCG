@@ -22,12 +22,14 @@ public class HexTile : MonoBehaviour
 
     // Id unique to each tile
     private int ID;
-
-    // Material of highlighted tile
-    [SerializeField]
-    private Material matHighlighted;
     private Material matDefault;
-    bool highlighted = false;
+    [SerializeField]
+    private Material matPrimaryHighlight;
+    [SerializeField]
+    private Material matSecondaryHighlight;
+    MeshRenderer mesh;
+    bool primaryHighlightActive;
+    bool secondaryHighlightActive;
     #endregion
 
 
@@ -35,8 +37,9 @@ public class HexTile : MonoBehaviour
 
     private void Awake()
     {
+        mesh = GetComponentInChildren<MeshRenderer>();
         CubicCoords = new Cubic(0, 0, 0);
-        matDefault = GetComponentInChildren<MeshRenderer>().material;
+        matDefault = mesh.material;
     }
 
     #endregion
@@ -58,22 +61,35 @@ public class HexTile : MonoBehaviour
         return ID;
     }
 
-    public void ToggleHighlight()
+    public void TogglePrimaryHighlight()
     {
         // Changes the material to highlight the tile
-        if (!highlighted)
+        if (!primaryHighlightActive)
         {
-            MeshRenderer mesh = GetComponentInChildren<MeshRenderer>();
-            mesh.material = matHighlighted;
-            highlighted = true;
+            mesh.material = matPrimaryHighlight;
+            primaryHighlightActive = true;
+            secondaryHighlightActive = false;
         }
         else
         {
-            MeshRenderer mesh = GetComponentInChildren<MeshRenderer>();
             mesh.material = matDefault;
-            highlighted = false;
+            primaryHighlightActive = false;
         }
         
+    }
+    public void ToggleSecondaryHighlight()
+    {
+        if(!secondaryHighlightActive)
+        {
+            mesh.material = matSecondaryHighlight;
+            secondaryHighlightActive = true;
+            primaryHighlightActive = false;
+        }
+        else
+        {
+            mesh.material = matDefault;
+            secondaryHighlightActive = false;
+        }
     }
 
     #endregion

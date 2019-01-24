@@ -24,11 +24,26 @@ public class PlayerController : MonoBehaviour {
                 {
                     int tileID = tile.GetID();
                     Debug.Log("Clicked Tile ID: " + tileID);
-                    GameBoard.HighlightTile(tileID);
+                    GameBoard.HighlightTile(tileID, true);
                 }
             }
+        }
+        else if(Input.GetMouseButtonDown(1))
+        {
+            Ray clickRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-
+            RaycastHit hit;
+            if (Physics.Raycast(clickRay, out hit))
+            {
+                GameObject go = hit.transform.gameObject;
+                HexTile tile = go.GetComponent<HexTile>();
+                if (tile)
+                {
+                    int tileID = tile.GetID();
+                    Debug.Log("Clicked Tile ID: " + tileID);
+                    GameBoard.HighlightTile(tileID, false);
+                }
+            }
         }
 	}
 }

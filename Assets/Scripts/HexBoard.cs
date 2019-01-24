@@ -28,14 +28,22 @@ public class HexBoard : MonoBehaviour {
     #region Public Methods
 
     // Highlights a tile for testing purposes
-    public void HighlightTile(int TileID)
+    public void HighlightTile(int TileID, bool Primary)
     {
         foreach (HexTile t in Board)
         {
             if (t.GetID() == TileID)
             {
                 Debug.Log("Highlighting tile with ID " + t.GetID());
-                t.ToggleHighlight();
+                if(Primary)
+                {
+                    t.TogglePrimaryHighlight();
+
+                }
+                else
+                {
+                    t.ToggleSecondaryHighlight();
+                }
             }
         }
     }
