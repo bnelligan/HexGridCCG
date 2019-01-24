@@ -26,7 +26,8 @@ public class HexTile : MonoBehaviour
     // Material of highlighted tile
     [SerializeField]
     private Material matHighlighted;
-
+    private Material matDefault;
+    bool highlighted = false;
     #endregion
 
 
@@ -35,6 +36,7 @@ public class HexTile : MonoBehaviour
     private void Awake()
     {
         CubicCoords = new Cubic(0, 0, 0);
+        matDefault = GetComponentInChildren<MeshRenderer>().material;
     }
 
     #endregion
@@ -56,11 +58,22 @@ public class HexTile : MonoBehaviour
         return ID;
     }
 
-    public void Highlight()
+    public void ToggleHighlight()
     {
         // Changes the material to highlight the tile
-        MeshRenderer mesh = GetComponentInChildren<MeshRenderer>();
-        mesh.material = matHighlighted;
+        if (!highlighted)
+        {
+            MeshRenderer mesh = GetComponentInChildren<MeshRenderer>();
+            mesh.material = matHighlighted;
+            highlighted = true;
+        }
+        else
+        {
+            MeshRenderer mesh = GetComponentInChildren<MeshRenderer>();
+            mesh.material = matDefault;
+            highlighted = false;
+        }
+        
     }
 
     #endregion
